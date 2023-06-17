@@ -1,7 +1,7 @@
 const express = require('express');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
-const UserModel = require('../model/userModel');
+const {UserModel} = require('../model/userModel');
 const BlackModel = require('../model/blacklist');
 const PostModel = require('../model/postModel');
 const {transporter}=require("../middleware/nodemailer");
