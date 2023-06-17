@@ -110,15 +110,15 @@ userRouter.post("/verify",auth,async(req,res)=>{
     try{
         const {otp}=req.body;
         const user= await UserModel.findOne({_id:req.body.userID});
+        const username=user.name;
+        const usermail=user.email;
         const data= await client.get(user.email);
         if(otp==data){
-            // let userdata=await UserModel.findById(user._id);
-            // userdata.plan = "LITE";
-            // console.log(userdata);
-            // await userdata.save();
-            // const newdata=await UserModel.findOne({_id:req.body.userID});
+           
+            // save details of paid user in database....
+            
             const {plan,price}=req.body;
-            const userdata= new PaidModel({plan,price});
+            const userdata= new PaidModel({plan,price,username,usermail});
             await userdata.save();
             res.status(200).send({"msg":true});
         }else{
@@ -128,8 +128,20 @@ userRouter.post("/verify",auth,async(req,res)=>{
     }catch(err){
         res.status(401).send({"error":err});
     }
-})
+});
 
+
+userRouter.get("/alluser",async(req,res)=>{
+    try{
+        
+        const userdata= await UserModel.find();
+        
+        res.status(200).send({"data":userdata});
+
+    }catch(err){
+        res.status(401).send({"error":err});
+    }
+});
 
 
 userRouter.post("/forgetpassword",async(req,res)=>{

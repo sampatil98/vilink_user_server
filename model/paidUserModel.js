@@ -8,6 +8,14 @@ const paiduserSchema= mongoose.Schema({
     price:{
         type:Number,
         require:true
+    },
+    username:{
+        type:String,
+        require:true
+    },
+    usermail:{
+        type:String,
+        require:true
     }
 });
 
