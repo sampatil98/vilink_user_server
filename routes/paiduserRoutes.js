@@ -23,7 +23,7 @@ paiduserRouter.get("/total-earning",async(req,res)=>{
               }
             }
           ])
-        res.status(200).send({"data":data});
+        res.status(200).send({"data":total});
 
     }catch(err){
         res.status(401).send({"error":err})
